@@ -87,24 +87,24 @@ module.exports = db;
 
 
 
-  async function main() {
-    // get the client
-    const mysql = require('mysql2/promise');
-    // create the connection
-    const connection = await mysql.createConnection({host:'localhost', user: 'root', database: 'test'});
-    // query database
-    const [rows, fields] = await connection.execute('SELECT * FROM `table` WHERE `name` = ? AND `age` > ?', ['Morty', 14]);
-  }
+//   async function main() {
+//     // get the client
+//     const mysql = require('mysql2/promise');
+//     // create the connection
+//     const connection = await mysql.createConnection({host:'localhost', user: 'root', database: 'test'});
+//     // query database
+//     const [rows, fields] = await connection.execute('SELECT * FROM `table` WHERE `name` = ? AND `age` > ?', ['Morty', 14]);
+//   }
 
 
-  // get the client
-const mysql = require('mysql2/promise');
+//   // get the client
+// const mysql = require('mysql2/promise');
 
-// get the promise implementation, we will use bluebird
-const bluebird = require('bluebird');
+// // get the promise implementation, we will use bluebird
+// const bluebird = require('bluebird');
 
-// create the connection, specify bluebird as Promise
-const connection = await mysql.createConnection({host:'localhost', user: 'root', database: 'test', Promise: bluebird});
+// // create the connection, specify bluebird as Promise
+// const connection = await mysql.createConnection({host:'localhost', user: 'root', database: 'test', Promise: bluebird});
 
-// query database
-const [rows, fields] = await connection.execute('SELECT * FROM `table` WHERE `name` = ? AND `age` > ?', ['Morty', 14]);
+// // query database
+// const [rows, fields] = await connection.execute('SELECT * FROM `table` WHERE `name` = ? AND `age` > ?', ['Morty', 14]);

@@ -11,7 +11,9 @@ VALUES
     ( "Senior Management" );
     -- 5
 
-INSERT INTO role ( title, salary, department_id )
+SELECT * FROM department;
+
+INSERT INTO roles ( title, salary, department_id )
 VALUES
 -- Customer Service
 ("phone operator", "50000", 1),
