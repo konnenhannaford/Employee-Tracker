@@ -43,13 +43,11 @@ VALUES
 ("trading control", "60000", 4);
 -- Senior Management
 ("customer service manager", "70000", 5),
-("customer service manager", "70000", 5),
-("hr manager", "70000", 5),
 ("hr manager", "70000", 5),
 ("marketing manager", "70000", 5),
-("marketing manager", "70000", 5),
 ("trading manager", "70000", 5),
-("trading manager", "70000", 5),
+("COO", "80000", 5),
+("CEO", "90000", 5),
 
 
 
@@ -62,29 +60,33 @@ VALUES
     ("Thomas", "Partey", 4 ),
     ("Gabriel", "Magalhaes", 5),
     ("Bukayo", "Saka", 6),
+
     ("Martin", "Odegaard", 7),
     ("Alex", "Lacazette", 8),
     ("Emile", "Smith-Rowe", 9),
     ("Pierre", "Aubameyang", 10),
     ("Ainsley", "Maitland-Niles", 11),
     ("Rob", "Holding", 12),
+
     ("Cedric", "Soares", 13),
     ("Takehiro", "Tomiyasu", 14 ),
     ("Nicolas", "Pepe", 15),
     ("Nuno", "Tavares", 16),
     ("Calum", "Chambers", 17),
     ("Pablo", "Mari", 18),
+
     ("Albert", "Sambi-Lokonga", 19),
     ("Mohammed", "Elneny", 20),
     ("Folarin", "Balogun", 21),
     ("Eddie", "Nketiah", 22),
     ("Sead", "Kolasinac", 23),
     ("Aaron", "Ramsdale", 24 ),
-    ("Arthur", "Okonkwo", 25),
-    ("Granit", "Xhaka", 26),
-    ("Gabriel", "Martinelli", 27),
-    ("William", "Saliba", 28),
-    ("Reiss", "Nelson", 29),
-    ("Konnen", "Hannaford", 30);
+
+    ("Arthur", "Okonkwo", 25, NULL),
+    ("Granit", "Xhaka", 26, NULL),
+    ("Gabriel", "Martinelli", 27, NULL),
+    ("William", "Saliba", 28, NULL),
+    ("Reiss", "Nelson", 29, NULL),
+    ("Konnen", "Hannaford", 30, NULL);
     -- UPDATE employee SET manager_id=9 WHERE id!=9;
 

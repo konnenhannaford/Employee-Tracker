@@ -16,27 +16,27 @@ const mysql = require('mysql2');
 // app.use(express.json());
 
 // Connect to database
-const db = mysql.createConnection(
-  {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-  },
-  console.log(`Connected to the employees-db`)
-);
-
-
 // const db = mysql.createConnection(
 //   {
-//     host: 'localhost',
-//     user: 'root',
-//     password: 'Endalkachew23?',
-//     database: 'employees_db'
+//     host: process.env.DB_HOST,
+//     user: process.env.DB_USER,
+//     password: process.env.DB_PASSWORD,
+//     database: process.env.DB_NAME
 //   },
 //   console.log(`Connected to the employees-db`)
 // );
-// module.exports = db;
+
+
+const db = mysql.createConnection(
+  {
+    host: 'localhost',
+    user: 'root',
+    password: 'Endalkachew23?',
+    database: 'employees_db'
+  },
+  console.log(`Connected to the employees-db`)
+);
+module.exports = db;
 
 // --------
 
@@ -79,4 +79,32 @@ const db = mysql.createConnection(
   // name  age
   // ----  ---
   // foo   10
-  // bar   20
+  // bar   20\
+
+
+
+
+
+
+
+  async function main() {
+    // get the client
+    const mysql = require('mysql2/promise');
+    // create the connection
+    const connection = await mysql.createConnection({host:'localhost', user: 'root', database: 'test'});
+    // query database
+    const [rows, fields] = await connection.execute('SELECT * FROM `table` WHERE `name` = ? AND `age` > ?', ['Morty', 14]);
+  }
+
+
+  // get the client
+const mysql = require('mysql2/promise');
+
+// get the promise implementation, we will use bluebird
+const bluebird = require('bluebird');
+
+// create the connection, specify bluebird as Promise
+const connection = await mysql.createConnection({host:'localhost', user: 'root', database: 'test', Promise: bluebird});
+
+// query database
+const [rows, fields] = await connection.execute('SELECT * FROM `table` WHERE `name` = ? AND `age` > ?', ['Morty', 14]);
