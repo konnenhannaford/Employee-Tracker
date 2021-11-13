@@ -16,16 +16,27 @@ const PORT = process.env.PORT || 3001;
 // app.use(express.json());
 
 // Connect to database
+// const db = mysql.createConnection(
+//   {
+//     host: process.env.HOST,
+//     user: process.env.USER,
+//     password: process.env.PASSWORD,
+//     database: process.env.NAME
+//   },
+//   console.log(`Connected to the employees-db`)
+// );
+
+
 const db = mysql.createConnection(
   {
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.NAME
+    host: 'localhost',
+    user: 'root',
+    password: 'Endalkachew23?',
+    database: 'employees_db'
   },
   console.log(`Connected to the employees-db`)
 );
-
+module.exports = db;
 
 // --------
 
