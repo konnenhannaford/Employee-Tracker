@@ -1,33 +1,31 @@
-const express = require('express');
+// const express = require('express');
+require("dotenv").config();
 const mysql = require('mysql2');
-// const inquirer = require('inquirer');
+const inquirer = require('inquirer');
 // const fs = require('fs');
 // const util = require ('util');
 // const path = require ('path');
 // const generateMarkdown = require('./utils/generateMarkdown.js');
+// const api = require('./routes/index.js');
 
-
-// const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001;
 // const app = express();
 
-// // Express middleware
+// // // Express middleware
 // app.use(express.urlencoded({ extended: false }));
 // app.use(express.json());
 
 // Connect to database
 const db = mysql.createConnection(
   {
-    host: 'localhost',
-    // MySQL Username
-    user: 'root',
-    // TODO: Add MySQL Password
-    password: '',
-    database: 'employees_db'
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.NAME
   },
   console.log(`Connected to the employees-db`)
 );
 
-module.exports = db;
 
 // --------
 
