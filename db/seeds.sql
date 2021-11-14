@@ -42,14 +42,14 @@ VALUES
 ("in-game trader", "55000", 4),
 ("in-game trader", "55000", 4),
 ("trading control", "60000", 4),
-("trading control", "60000", 4);
+("trading control", "60000", 4),
 -- Senior Management
 ("customer service manager", "70000", 5),
 ("hr manager", "70000", 5),
 ("marketing manager", "70000", 5),
 ("trading manager", "70000", 5),
 ("COO", "80000", 5),
-("CEO", "90000", 5),
+("CEO", "90000", 5);
 
 
 
