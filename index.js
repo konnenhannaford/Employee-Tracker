@@ -1,10 +1,7 @@
 require('dotenv').config();
 const inquirer = require('inquirer');
-require('console.table');
 const mysql = require('mysql2');
-// const util = require('util');
-
-const PORT = process.env.PORT || 3001;
+const cTable = require('console.table');
 
 const db = mysql.createConnection(
     {
@@ -15,23 +12,27 @@ const db = mysql.createConnection(
     },
     console.log(`Connected to the employees-db`)
   );
-  module.exports = db;
   
 db.connect(err => {
-    if (err) throw err;
+    if (err) console.log("error in running");
+    else console.log("connected");
 });
 
-db.query = util.promisify(db.query)
 
-  
 userPrompts = () => {
     inquirer.prompt({
-        name: "Tracker Entry",
+        name: "Employee Database - Begin",
         type: "list",
         message: "Thanks for using the employee tracker, follow promopts to review and update",
-        choices: ["View Department", "View roles", "View employees", 
-        "Add department", "Add role", "Add employee", "Modify existing employee"],
-    
+        choices: [
+        "View All Departments", 
+        "View All Roles", 
+        "View All Employees", 
+        "Add a Department", 
+        "Add a Role", 
+        "Add an Employee", 
+        "Update and Existing Employee"],
+
     }).then((choices) => {
         if(choices.userChoice === "View all Departments"){
             viewAllDepartments();
@@ -47,6 +48,20 @@ userPrompts = () => {
             addEmployee();
         } else if (choices.userChoice === "Modify Employee"){
             updateEmployee();
+        }
+        // bonus sect
+        else if (choices.userChoice === "View Employees by Manager"){
+            // viewAllRoles();
+        } else if (choices.userChoice === "View Employees by Department"){
+            // viewAllEmployees();
+        } else if (choices.userChoice === "Delete a Department"){
+            // addDepartment();
+        } else if (choices.userChoice === "Delete a Role"){
+            // addRole();
+        } else if (choices.userChoice === "Delete an Employee"){
+            // addEmployee();
+        } else if (choices.userChoice === "Modify Employee Manager"){
+            // updateEmployee();
         }
     })
 };
