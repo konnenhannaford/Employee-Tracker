@@ -64,7 +64,7 @@ VALUES
     ("Nicolas", "Pepe", 8, 15),
     ("Nuno", "Tavares", 8, 15),
     ("Calum", "Chambers", 9, 15),
-    ("Pablo", "Mari", 9, 15,
+    ("Pablo", "Mari", 9, 15),
 
     ("Albert", "Sambi-Lokonga", 10, 16),
     ("Mohammed", "Elneny", 10, 16),

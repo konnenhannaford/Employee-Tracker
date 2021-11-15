@@ -13,186 +13,210 @@ const db = mysql.createConnection(
     console.log(`Connected to the employees-db`)
   );
   
-db.connect(err => {
-    if (err) console.log("error in running");
-    else console.log("connected");
-});
 
+// userPrompts = () => {
+//     inquirer.prompt({
+//         name: "Employee Database - Begin",
+//         type: "list",
+//         message: "Thanks for using the employee tracker, follow promopts to review and update",
+//         choices:[
+//         "View Departments", 
+//         "View  Roles", 
+//         "View  Employees", 
+//         "Add a Department", 
+//         "Add a Role", 
+//         "Add an Employee", 
+//         "Update and Existing Employee"],
 
-userPrompts = () => {
-    inquirer.prompt({
-        name: "Employee Database - Begin",
-        type: "list",
-        message: "Thanks for using the employee tracker, follow promopts to review and update",
-        choices: [
-        "View All Departments", 
-        "View All Roles", 
-        "View All Employees", 
-        "Add a Department", 
-        "Add a Role", 
-        "Add an Employee", 
-        "Update and Existing Employee"],
+//     }).then((choices) => {
+//         console.log (choices)
+//         if(choices.userChoice === "View  Departments"){
+//             viewDepartments();
+//         } else if (choices.userChoice === "View Roles"){
+//             viewRoles();
+//         } else if (choices.userChoice === "View Employees"){
+//             viewEmployees();
+//         } else if (choices.userChoice === "Add Department"){
+//             addDepartment();
+//         } else if (choices.userChoice === "Add role"){
+//             addRole();
+//         } else if (choices.userChoice === "Add Employee"){
+//             addEmployee();
+//         } else if (choices.userChoice === "Modify Employee"){
+//             updateEmployee();
+//         }
+//         // bonus sect
+//         else if (choices.userChoice === "View Employees by Manager"){
+//             // viewEbyM();
+//         } else if (choices.userChoice === "View Employees by Department"){
+//             // viewEbyD();
+//         } else if (choices.userChoice === "Delete a Department"){
+//             // DeleteDepartment();
+//         } else if (choices.userChoice === "Delete a Role"){
+//             // DeleteRole();
+//         } else if (choices.userChoice === "Delete an Employee"){
+//             // DeleteEmployee();
+//         } else if (choices.userChoice === "Modify Employee Manager"){
+//             // updateEmployeeManager();
+//         }
+//     })
+// };
 
-    }).then((choices) => {
-        if(choices.userChoice === "View all Departments"){
-            viewAllDepartments();
-        } else if (choices.userChoice === "View Roles"){
-            viewAllRoles();
-        } else if (choices.userChoice === "View Employees"){
-            viewAllEmployees();
-        } else if (choices.userChoice === "Add Department"){
-            addDepartment();
-        } else if (choices.userChoice === "Add role"){
-            addRole();
-        } else if (choices.userChoice === "Add Employee"){
-            addEmployee();
-        } else if (choices.userChoice === "Modify Employee"){
-            updateEmployee();
-        }
-        // bonus sect
-        else if (choices.userChoice === "View Employees by Manager"){
-            // viewAllRoles();
-        } else if (choices.userChoice === "View Employees by Department"){
-            // viewAllEmployees();
-        } else if (choices.userChoice === "Delete a Department"){
-            // addDepartment();
-        } else if (choices.userChoice === "Delete a Role"){
-            // addRole();
-        } else if (choices.userChoice === "Delete an Employee"){
-            // addEmployee();
-        } else if (choices.userChoice === "Modify Employee Manager"){
-            // updateEmployee();
-        }
-    })
-};
+// function init () {
+//     console.log(`Follow prompts to input data`)
 
-function init () {
-    console.log(`Follow prompts to input data`)
+// userPrompts();
+// };
 
-userPrompts();
-};
+// // Deps
+// viewDepartment = () => {
+//     db.query("Select * from departments") 
+//         .then (data => {
+//             console.table(data)
+//         })
+// }
 
-// Deps
-viewAllDepartments = () => {
-    db.query("Select * from departments") 
-        .then (data => {
-            console.table(data)
-        })
-}
+// // roles
+// viewRoles = () => {
+//     db.query("Select * from roles") 
+//         .then (data => {
+//             console.table(data)
+//         })
+// }
+// // employee
+// viewEmployeesData = () => {
+//     db.query("Select * from employeesdata") 
+//         .then (data => {
+//             console.table(data)
+//         })
+// }
 
-// roles
-viewAllRoles = () => {
-    db.query("Select * from roles") 
-        .then (data => {
-            console.table(data)
-        })
-}
-// employee
-viewAllEmployees = () => {
-    db.query("Select * from employees") 
-        .then (data => {
-            console.table(data)
-        })
-}
+// addDepartment = () => {
 
-addDepartment = () => {
+//     const addDepartment = [
+//         {
+//             type:"text",
+//             message:"Add Department",
+//             name: "departmentAdd"
+//         },
+//         {
+//             type:"text",
+//             message:"Add Department ID?",
+//             name: "departmentID"
+//         }
+//     ];
+//     prompt(addDepartment)
+//     .then((department)=> {
+//         db.createDepartment(department)
+//         .then(() => {
+//             console.log(`Add Department: ${department}`)
+//         })
+//         .then(() => {
+//             userPrompts();
+//         })
+//     })
 
-    const addDepartment = [
-        {
-            type:"text",
-            message:"What Department would you like to add?",
-            name: "departmentAdd"
-        },
-        {
-            type:"text",
-            message:"What is the Department ID?",
-            name: "departmentID"
-        }
-    ];
-    prompt(addDepartment)
-    .then((department)=> {
-        db.createDepartment(department)
-        .then(() => {
-            console.log(`Add Department: ${department}`)
-        })
-        .then(() => {
-            userPrompts();
-        })
-    })
+// }
 
-}
+// addRole = () => {
 
-addRole = () => {
-
-    const addRole = [
-        {
-            type:"text",
-            message:"What is the ID for the role?",
-            name: "roleID"
-        },
-        {
-            type:"text",
-            message:"What is the Job role title?",
-            name: "roleTitle"
-        },
-        {
-            type:"text",
-            message:"What is the salary?",
-            name: "roleSalary"
-        },
-    ]
-    prompt(addRole)
-    .then((role)=> {
-        db.createRole(role)
-        .then(() => {
-            console.log(`Add role: ${role}`)
-        })
-        .then(() => {
-            userPrompts();
-        });
-    });
+//     const addRole = [
+//         {
+//             type:"text",
+//             message:"Add role ID",
+//             name: "roleID"
+//         },
+//         {
+//             type:"text",
+//             message:"Add Job role title",
+//             name: "roleTitle"
+//         },
+//         {
+//             type:"text",
+//             message:"Add salary",
+//             name: "roleSalary"
+//         },
+//     ]
+//     prompt(addRole)
+//     .then((role)=> {
+//         db.createRole(role)
+//         .then(() => {
+//             console.log(`Add role: ${role}`)
+//         })
+//         .then(() => {
+//             userPrompts();
+//         });
+//     });
     
-}
+// }
 
-addEmployee = () => {
+// addEmployee = () => {
 
-    const addEmployee = [
-        {
-            type:"text",
-            message:"What is the ID for the employee?",
-            name: "employeeID"
-        },
-        {
-            type:"text",
-            message:"Whats the employees name (first)?",
-            name: "employeeFirstName"
-        },
-        {
-            type:"text",
-            message:"Whats the employees name (last)?",
-            name: "employeeLastName"
-        },
-        {
-            type:"text",
-            message:"What is the ID for this employee?",
-            name: "employeeRoleID"
-        },
-        {
-            type:"text",
-            message:"What is the Manager ID for this employee?",
-            name: "employeeManagerID"
-        }
-    ]
-    prompt(addEmployee)
-    .then((employee)=> {
-        db.createRole(employee)
-        .then(() => {
-            console.log(`Add Employee - ${employee}`)
-        })
-        .then(() => {
-            userPrompts();
-        });
+//     const addEmployee = [
+//         {
+//             name: "employeeID",
+//             type:"text",
+//             message:"What is the ID for the employee?"
+            
+//         },
+//         {
+//             name: "employeeFirstName",
+//             type:"text",
+//             message:"Whats the employees name (first)?"
+            
+//         },
+//         {
+//             name: "employeeLastName",
+//             type:"text",
+//             message:"Whats the employees name (last)?"
+           
+//         },
+//         {
+//             name: "employeeRoleID",
+//             type:"text",
+//             message:"What is the ID for this employee?"
+            
+//         },
+//         {
+//             name: "employeeManagerID",
+//             type:"text",
+//             message:"What is the Manager ID for this employee?"
+            
+//         }
+//     ]
+//     prompt(addEmployee)
+//     .then((employee)=> {
+//         db.createRole(employee)
+//         .then(() => {
+//             console.log(`Add Employee - ${employee}`)
+//         })
+//         .then(() => {
+//             userPrompts();
+//         });
+//     });
+// }
+
+// init();
+viewDepartment();
+
+function viewDepartment() {h
+    db.query("SELECT * FROM department", function (error, res) {
+        console.log(res)
     });
-}
+};
 
-init();
+viewEmployeesData();
+
+function viewEmployeesData() {
+    db.query("SELECT * FROM employeesdata", function (error, res) {
+        console.log(res)
+    });
+};
+
+viewRoles();
+
+function viewRoles() {
+    db.query("SELECT * FROM roles", function (error, res) {
+        console.log(res)
+    });
+};
