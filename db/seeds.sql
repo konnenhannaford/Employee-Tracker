@@ -1,4 +1,4 @@
-INSERT INTO department ( id, name )
+INSERT INTO department ( department_id, name )
 VALUES
     (1, "Customer Service" ),
     -- 1
@@ -43,8 +43,9 @@ VALUES
 SELECT * FROM roles;
 
 
-INSERT INTO employeesdata ( first_name, last_name, role_id, manager_id )
+INSERT INTO employees ( first_name, last_name, role_id, manager_id )
 VALUES
+
     ("Bernd", "Leno", 1, 13),
     ("Kieran", "Tierney", 1, 13),
     ("Ben", "White", 2, 13),
@@ -81,4 +82,4 @@ VALUES
     ("Konnen", "Hannaford", 18, NULL);
     -- UPDATE employee SET manager_id=9 WHERE id!=9;
 
-SELECT * FROM employeesdata;
+SELECT * FROM employees;

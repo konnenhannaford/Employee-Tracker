@@ -8,12 +8,11 @@ const db = mysql.createConnection(
       host: 'localhost',
       user: 'root',
       password: 'Endalkachew23?',
-      database: 'employees_db'
+      database: 'employeetracker_db'
     },
-    console.log(`Connected to the employees-db`)
+    console.log(`Connected to the employeetracker_db`)
   );
   
-
 // userPrompts = () => {
 //     inquirer.prompt({
 //         name: "Employee Database - Begin",
@@ -28,37 +27,37 @@ const db = mysql.createConnection(
 //         "Add an Employee", 
 //         "Update and Existing Employee"],
 
-//     }).then((choices) => {
-//         console.log (choices)
-//         if(choices.userChoice === "View  Departments"){
-//             viewDepartments();
-//         } else if (choices.userChoice === "View Roles"){
-//             viewRoles();
-//         } else if (choices.userChoice === "View Employees"){
-//             viewEmployees();
-//         } else if (choices.userChoice === "Add Department"){
-//             addDepartment();
-//         } else if (choices.userChoice === "Add role"){
-//             addRole();
-//         } else if (choices.userChoice === "Add Employee"){
-//             addEmployee();
-//         } else if (choices.userChoice === "Modify Employee"){
-//             updateEmployee();
-//         }
-//         // bonus sect
-//         else if (choices.userChoice === "View Employees by Manager"){
-//             // viewEbyM();
-//         } else if (choices.userChoice === "View Employees by Department"){
-//             // viewEbyD();
-//         } else if (choices.userChoice === "Delete a Department"){
-//             // DeleteDepartment();
-//         } else if (choices.userChoice === "Delete a Role"){
-//             // DeleteRole();
-//         } else if (choices.userChoice === "Delete an Employee"){
-//             // DeleteEmployee();
-//         } else if (choices.userChoice === "Modify Employee Manager"){
-//             // updateEmployeeManager();
-//         }
+    // }).then((choices) => {
+    //     console.log (choices)
+    //     if(choices.userChoice === "View  Departments"){
+    //         viewDepartments();
+    //     } else if (choices.userChoice === "View Roles"){
+    //         viewRoles();
+    //     } else if (choices.userChoice === "View Employees"){
+    //         viewEmployees();
+    //     } else if (choices.userChoice === "Add Department"){
+    //         addDepartment();
+    //     } else if (choices.userChoice === "Add role"){
+    //         addRole();
+    //     } else if (choices.userChoice === "Add Employee"){
+    //         addEmployee();
+    //     } else if (choices.userChoice === "Modify Employee"){
+    //         updateEmployee();
+    //     }
+        // // bonus sect
+        // else if (choices.userChoice === "View Employees by Manager"){
+        //     // viewEbyM();
+        // } else if (choices.userChoice === "View Employees by Department"){
+        //     // viewEbyD();
+        // } else if (choices.userChoice === "Delete a Department"){
+        //     // DeleteDepartment();
+        // } else if (choices.userChoice === "Delete a Role"){
+        //     // DeleteRole();
+        // } else if (choices.userChoice === "Delete an Employee"){
+        //     // DeleteEmployee();
+        // } else if (choices.userChoice === "Modify Employee Manager"){
+        //     // updateEmployeeManager();
+        // }
 //     })
 // };
 
@@ -205,10 +204,10 @@ function viewDepartment() {
     });
 };
 
-viewEmployeesData();
+viewEmployees();
 
-function viewEmployeesData() {
-    db.query("SELECT * FROM employeesdata", function (error, res) {
+function viewEmployees() {
+    db.query("SELECT * FROM employees", function (error, res) {
         console.log(res)
     });
 };
