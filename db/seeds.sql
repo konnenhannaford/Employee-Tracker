@@ -1,14 +1,14 @@
-INSERT INTO department ( name )
+INSERT INTO department ( id, name )
 VALUES
-    ( "Customer Service" ),
+    (1, "Customer Service" ),
     -- 1
-    ( "Human Resources" ),
+    (2, "Human Resources" ),
     -- 2
-    ( "Marketing" ),
+    (3, "Marketing" ),
     -- 3
-    ( "Traders"),
+    (4, "Traders"),
     -- 4
-    ( "Senior Management" );
+    (5, "Senior Management" );
     -- 5
 
 SELECT * FROM department;

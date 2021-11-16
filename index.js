@@ -199,7 +199,7 @@ const db = mysql.createConnection(
 // init();
 viewDepartment();
 
-function viewDepartment() {h
+function viewDepartment() {
     db.query("SELECT * FROM department", function (error, res) {
         console.log(res)
     });
