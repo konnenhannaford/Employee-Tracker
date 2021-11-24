@@ -2,15 +2,16 @@ require('dotenv').config();
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
 const cTable = require('console.table');
+const confirm = require('inquirer-confirm');
 
 const db = mysql.createConnection(
     {
       host: 'localhost',
       user: 'root',
       password: 'Endalkachew23?',
-      database: 'employeetracker_db'
+      database: 'employeesdatabase_db'
     },
-    console.log(`Connected to the employeetracker_db`)
+    console.log(`Connected to the employeesdatabase_db`)
   );
   
 const userPrompts = () => {
@@ -24,8 +25,8 @@ const userPrompts = () => {
         "View Employees", 
         "Add a Department", 
         "Add a Role", 
-        "Add an Employee", 
-        "Update an Existing Employee"],
+        "Add an Employee" 
+        ],
 
     }).then(choices => {
         console.log (choices)
@@ -47,24 +48,7 @@ const userPrompts = () => {
         } else if (choices.testing === "Add an Employee"){
             addEmployees()
             console.log ("testing");
-        } else if (choices.testing === "Update an Existing Employee"){
-            updateEmployees()
-            console.log ("testing");
         }
-        // // bonus sect
-        // else if (choices.testing === "View Employees by Manager"){
-        //     // viewEbyM();
-        // } else if (choices.testing === "View Employees by Department"){
-        //     // viewEbyD();
-        // } else if (choices.testing === "Delete a Department"){
-        //     // DeleteDepartment();
-        // } else if (choices.testing === "Delete a Role"){
-        //     // DeleteRole();
-        // } else if (choices.testing === "Delete an Employee"){
-        //     // DeleteEmployee();
-        // } else if (choices.testing === "Modify Employee Manager"){
-        //     // updateEmployeeManager();
-        // }
     })
 };
 
@@ -76,24 +60,24 @@ userPrompts();
 
 // Deps
 viewDepartment = () => {
-    db.query("Select * from department") 
-        .then (data => {
-            console.table(data)
-        })
+    db.query("SELECT * FROM department", function (error, res) {
+        console.table(res)
+        endOrContinue()
+    });
 }
 
 // roles
 viewRoles = () => {
-    db.query("Select * from roles") 
-        .then (data => {
-            console.table(data)
+    db.query("SELECT * FROM roles", function (error, res) {
+        console.table(res)
+        endOrContinue()
         })
 }
 // employee
 viewEmployees = () => {
-    db.query("Select * from employees") 
-        .then (data => {
-            console.table(data)
+    db.query("SELECT * FROM employees", function (error, res) {
+        console.table(res)
+        endOrContinue()
         })
 }
 
@@ -111,18 +95,21 @@ addDepartment = () => {
             name: "departmentID"
         }
     ];
-    prompt(addDepartment)
+    inquirer.prompt(addDepartment)
     .then((department)=> {
-        db.createDepartment(department)
-        .then(() => {
-            console.log(`Add Department: ${department}`)
-        })
-        .then(() => {
-            userPrompts();
-        })
-    })
+        const data = {
+            department_id: department.departmentID,
+            department_name: department.departmentAdd
+        }
 
+        db.query("INSERT INTO department SET ?", data, function (error, res) {
+            if (error) throw error;
+            endOrContinue()
+        });
+        console.log (department)
+    })
 }
+
 
 addRoles = () => {
 
@@ -142,18 +129,27 @@ addRoles = () => {
             message:"Add salary",
             name: "roleSalary"
         },
+        {
+            type:"text",
+            message:"Add Department ID for this role",
+            name: "DepartmentID"
+        },
     ]
-    prompt(addRole)
+ 
+    inquirer.prompt(addRole)
     .then((role)=> {
-        db.createRole(role)
-        .then(() => {
-            console.log(`Add role: ${role}`)
-        })
-        .then(() => {
-            userPrompts();
+        const data = {
+            roles_id: role.roleID,
+            title: role.roleTitle,
+            salary: role.roleSalary,
+            department_id: role.DepartmentID
+        }
+        db.query("INSERT INTO roles SET ?", data, function (error, res) {
+            if (error) throw error;
+            endOrContinue()
         });
-    });
-    
+        console.log (role)
+        });    
 }
 
 addEmployees = () => {
@@ -180,7 +176,7 @@ addEmployees = () => {
         {
             name: "employeeRoleID",
             type:"text",
-            message:"What is the ID for this employee?"
+            message:"What is the ID for this role?"
             
         },
         {
@@ -190,49 +186,35 @@ addEmployees = () => {
             
         }
     ]
-    prompt(addEmployee)
-    .then((employee)=> {
-        db.createRole(employee)
-        .then(() => {
-            console.log(`Add Employee - ${employee}`)
-        })
-        .then(() => {
-            userPrompts();
-        });
+    inquirer.prompt(addEmployee)
+    .then((employees)=> {
+    const data = {
+        employees_id: employees.employeeID,
+        first_name: employees.employeeFirstName,
+        last_name: employees.employeeLastName,
+        role_id: employees.employeeRoleID,
+        manager_id: employees.employeeManagerID
+    }
+    db.query("INSERT INTO employees SET ?", data, function (error, res) {
+        if (error) throw error;
+        endOrContinue()
+    });
+    console.log (employees)
     });
 }
 
+const endOrContinue = () => {
+    confirm("Do you want to continue?")
+        .then(function confirmed() {
+           init()
+        }, function cancelled() {
+        db.end ()
+           
+        });
+};
+
 init();
 
-
-
-
-
-
-// -------------this code works to call the info from database-----------\
-// viewDepartment();
-
-// function viewDepartment() {
-//     db.query("SELECT * FROM department", function (error, res) {
-//         console.log(res)
-//     });
-// };
-
-// viewEmployees();
-
-// function viewEmployees() {
-//     db.query("SELECT * FROM employees", function (error, res) {
-//         console.log(res)
-//     });
-// };
-
-// viewRoles();
-
-// function viewRoles() {
-//     db.query("SELECT * FROM roles", function (error, res) {
-//         console.log(res)
-//     });
-// };
 
 
 
